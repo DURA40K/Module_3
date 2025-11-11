@@ -1,0 +1,204 @@
+// ===========================
+// Product Grid Component
+// ===========================
+
+.product-grid {
+  display: grid;
+  gap: map-get($spacers, 4);
+  margin-bottom: map-get($spacers, 5);
+
+  // Responsive grid
+  grid-template-columns: 1fr;
+
+  @include media-breakpoint-up(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.product-card {
+  @include card-style;
+  @include transition(transform, box-shadow);
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $box-shadow-lg;
+  }
+
+  &__image {
+    position: relative;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      @include transition(transform);
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: map-get($spacers, 2);
+    right: map-get($spacers, 2);
+    background-color: $danger-color;
+    color: $text-white;
+    padding: 0.25rem 0.5rem;
+    border-radius: $border-radius-sm;
+    font-size: 0.75rem;
+    font-weight: $font-weight-bold;
+  }
+
+  &__content {
+    padding: map-get($spacers, 3);
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: $font-weight-bold;
+    margin-bottom: map-get($spacers, 2);
+    color: $text-primary;
+    @include text-truncate;
+  }
+
+  &__description {
+    color: $text-muted;
+    font-size: 0.875rem;
+    margin-bottom: map-get($spacers, 3);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: map-get($spacers, 3);
+  }
+
+  &__current-price {
+    font-size: 1.25rem;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+  }
+
+  &__old-price {
+    font-size: 0.875rem;
+    color: $text-muted;
+    text-decoration: line-through;
+  }
+
+  &__actions {
+    display: flex;
+    gap: map-get($spacers, 2);
+  }
+
+  &__btn {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: $border-radius;
+    font-weight: $font-weight-normal;
+    @include transition(all);
+    cursor: pointer;
+
+    &--primary {
+      background-color: $primary-color;
+      color: $text-white;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+
+    &--outline {
+      background-color: transparent;
+      color: $primary-color;
+      border: 1px solid $primary-color;
+
+      &:hover {
+        background-color: $primary-color;
+        color: $text-white;
+      }
+    }
+  }
+}
+
+// Product filters
+.product-filters {
+  background-color: $bg-secondary;
+  border-radius: $border-radius;
+  padding: map-get($spacers, 4);
+  margin-bottom: map-get($spacers, 4);
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: $font-weight-bold;
+    margin-bottom: map-get($spacers, 3);
+    color: $text-primary;
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: map-get($spacers, 3);
+    align-items: end;
+  }
+
+  &__group {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: map-get($spacers, 1);
+    font-weight: $font-weight-normal;
+    color: $text-primary;
+  }
+
+  &__select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: $border-radius;
+    background-color: $bg-primary;
+    color: $text-primary;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+    }
+  }
+
+  &__btn {
+    padding: 0.5rem 1.5rem;
+    background-color: $primary-color;
+    color: $text-white;
+    border: none;
+    border-radius: $border-radius;
+    font-weight: $font-weight-normal;
+    cursor: pointer;
+    @include transition(background-color);
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}

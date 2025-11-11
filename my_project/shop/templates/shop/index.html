@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - Магазин{% endblock %}
+
+{% block content %}
+<main class="main">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__content">
+        <h1 class="hero__title">Добро пожаловать в наш магазин</h1>
+        <p class="hero__subtitle">Лучшие товары по доступным ценам</p>
+        <a href="{% url 'shop:product_list' %}" class="btn btn--primary"
+          >Посмотреть товары</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section__title">Почему выбирают нас</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card__body">
+              <h3 class="card__title">Качество</h3>
+              <p class="card__text">
+                Только проверенные товары от надежных поставщиков
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card__body">
+              <h3 class="card__title">Быстрая доставка</h3>
+              <p class="card__text">
+                Доставляем по всей стране в кратчайшие сроки
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card__body">
+              <h3 class="card__title">Низкие цены</h3>
+              <p class="card__text">Конкурентные цены и регулярные скидки</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

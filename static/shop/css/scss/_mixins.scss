@@ -1,0 +1,89 @@
+// ===========================
+// SCSS Mixins
+// ===========================
+
+// Media queries
+@mixin media-breakpoint-up($name) {
+  $min: map-get($grid-breakpoints, $name);
+  @if $min != 0 {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($name) {
+  $max: map-get($grid-breakpoints, $name) - 0.02;
+  @media (max-width: $max) {
+    @content;
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Button styles
+@mixin button-variant($background, $border, $color: $text-white) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+
+  &:hover {
+    background-color: darken($background, 7.5%);
+    border-color: darken($border, 10%);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($background, 0.5);
+  }
+
+  &:active {
+    background-color: darken($background, 10%);
+    border-color: darken($border, 12.5%);
+  }
+}
+
+// Card component
+@mixin card-style {
+  background-color: $bg-primary;
+  border: $border-width solid $border-color;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+// Transition
+@mixin transition($properties...) {
+  @if length($properties) == 0 {
+    transition: all 0.3s ease;
+  } @else {
+    transition: $properties;
+  }
+}
+
+// Text truncate
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Clearfix
+@mixin clearfix {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Товары - Магазин{% endblock %}
+
+{% block content %}
+<main class="main">
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title">Наши товары</h1>
+
+      <div class="products">
+        <div class="row">
+          {% if user.is_staff %}
+          <!-- Карточка добавления товара для админов -->
+          <div class="col-md-4 col-sm-6">
+            <a href="{% url 'shop:add_product' %}" class="product-card product-card--add">
+              <div class="product-card__add-icon">
+                <span class="plus-icon">+</span>
+              </div>
+              <div class="product-card__body">
+                <h3 class="product-card__title">Добавить товар</h3>
+                <p class="product-card__description">Создать новый товар</p>
+              </div>
+            </a>
+          </div>
+          {% endif %}
+          
+          {% if products %}
+            {% for product in products %}
+            <!-- Товар {{ product.id }} -->
+            <div class="col-md-4 col-sm-6">
+              <div class="product-card">
+                <div class="product-card__image">
+                  {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+                  {% else %}
+                    <img src="https://via.placeholder.com/300x300?text={{ product.name }}" alt="{{ product.name }}" />
+                  {% endif %}
+                </div>
+                <div class="product-card__body">
+                  <h3 class="product-card__title">{{ product.name }}</h3>
+                  <p class="product-card__description">
+                    {{ product.description|truncatewords:15 }}
+                  </p>
+                  <div class="product-card__price">
+                    <span class="price">{{ product.price }} руб.</span>
+                  </div>
+                  <a
+                    href="{% url 'shop:product_detail' product.id %}"
+                    class="btn btn--primary"
+                    >Подробнее</a
+                  >
+                  {% if user.is_authenticated %}
+                  <a
+                    href="{% url 'shop:add_to_cart' product.id %}"
+                    class="btn btn--success"
+                    style="margin-top: 10px;"
+                    >🛒 В корзину</a
+                  >
+                  {% endif %}
+                  
+                  {% if user.is_staff %}
+                  <a
+                    href="{% url 'shop:edit_product' product.id %}"
+                    class="btn btn--warning"
+                    style="margin-top: 10px;"
+                    >✏️ Редактировать</a
+                  >
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          {% else %}
+            <div class="col-12">
+              <div class="alert alert-info">
+                <p>📦 Товары пока не добавлены. Добавьте товары через Django Admin.</p>
+                <a href="/admin/" class="btn btn--primary">Перейти в Admin</a>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+        
+        <!-- Пагинация -->
+        {% if is_paginated %}
+        <div class="pagination-wrapper">
+          <nav class="pagination">
+            {% if page_obj.has_previous %}
+              <a href="?page=1" class="pagination__link">« Первая</a>
+              <a href="?page={{ page_obj.previous_page_number }}" class="pagination__link">‹ Назад</a>
+            {% endif %}
+            
+            <span class="pagination__current">
+              Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+            
+            {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}" class="pagination__link">Вперед ›</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination__link">Последняя »</a>
+            {% endif %}
+          </nav>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
+

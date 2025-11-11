@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Поиск товаров - Интернет-магазин{% endblock %}
+
+{% block content %}
+<div class="search-page">
+
+    <div class="search-container">
+        <h1>🔍 Поиск товаров по названию</h1>
+
+        <!-- Форма с GET методом -->
+        <div class="search-form">
+            <h2>Поиск через GET</h2>
+            <form method="GET" action="{% url 'shop:search_products' %}">
+                <div class="form-group">
+                    <label for="search-get">Введите название товара:</label>
+                    <input 
+                        type="text" 
+                        id="search-get" 
+                        name="search" 
+                        placeholder="Например: iPhone, книга, футболка..."
+                        value="{{ search_query }}"
+                    >
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn-get">Искать через GET</button>
+                </div>
+                <div class="method-info">
+                    💡 <strong>request.GET.get('search')</strong> — Параметры видны в URL
+                </div>
+            </form>
+        </div>
+
+        <hr style="margin: 40px 0; border: none; border-top: 2px solid #eee;">
+
+        <!-- Форма с POST методом -->
+        <div class="search-form">
+            <h2>Поиск через POST</h2>
+            <form method="POST" action="{% url 'shop:search_products' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="search-post">Введите название товара:</label>
+                    <input 
+                        type="text" 
+                        id="search-post" 
+                        name="search" 
+                        placeholder="Например: iPhone, книга, футболка..."
+                        value="{{ search_query }}"
+                    >
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn-post">Искать через POST</button>
+                </div>
+                <div class="method-info" style="background-color: #e8f5e9; border-left: 4px solid #4CAF50;">
+                    💡 <strong>request.POST.get('search')</strong> — Параметры скрыты в теле запроса
+                </div>
+            </form>
+        </div>
+
+        <!-- Результаты поиска -->
+        {% if search_query %}
+        <div class="results">
+            <h2>📦 Результаты поиска: "{{ search_query }}"</h2>
+            <p style="color: #666;">Метод запроса: <strong>{{ request.method }}</strong></p>
+            
+            {% if products %}
+                <ul class="product-list">
+                    {% for product in products %}
+                    <li class="product-item">
+                        <div class="product-name">{{ product.name }}</div>
+                        <div class="product-price">{{ product.price }} руб.</div>
+                        <div class="product-description">{{ product.description }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="no-results">
+                    <p>😔 Товары не найдены. Попробуйте другой запрос.</p>
+                </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div style="margin-top: 30px; padding: 20px; background: #f0f0f0; border-radius: 4px;">
+            <h3>🎓 Полезная информация:</h3>
+            <ul>
+                <li><strong>GET</strong> — Данные в URL, можно поделиться ссылкой</li>
+                <li><strong>POST</strong> — Данные скрыты, лучше для чувствительной информации</li>
+                <li>В Django используйте <code>request.GET</code> и <code>request.POST</code></li>
+                <li>Для POST обязательно добавлять <code>{% verbatim %}{% csrf_token %}{% endverbatim %}</code></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

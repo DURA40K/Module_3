@@ -1,0 +1,40 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__content">
+      <div class="footer__section">
+        <h3 class="footer__title">Интернет-магазин</h3>
+        <p class="footer__text">
+          Лучшие товары по лучшим ценам. Быстрая доставка и отличное качество.
+        </p>
+      </div>
+      <div class="footer__section">
+        <h3 class="footer__title">Навигация</h3>
+        <ul class="footer__list">
+          <li>
+            <a href="{% url 'shop:index' %}" class="footer__link">Главная</a>
+          </li>
+          <li>
+            {% comment %} <a href="{% url 'shop:products' %}" class="footer__link">Товары</a> {% endcomment %}
+          </li>
+          <li>
+            <a href="{% url 'shop:about' %}" class="footer__link">О нас</a>
+          </li>
+          <li>
+            <a href="{% url 'shop:contact' %}" class="footer__link">Контакты</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer__section">
+        <h3 class="footer__title">Контакты</h3>
+        <p class="footer__text">
+          Email: info@myshop.com<br />
+          Телефон: +38 (000) 123-45-67<br />
+          Адрес: Киев, ул. Примерная, 123
+        </p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2025 Мой Магазин. Все права защищены.</p>
+    </div>
+  </div>
+</footer>

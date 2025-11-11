@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Удаление товара - Магазин{% endblock %}
+
+{% block content %}
+<main class="main">
+  <section class="section">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="{% url 'shop:index' %}">Главная</a> >
+        <a href="{% url 'shop:product_list' %}">Товары</a> >
+        <a href="{% url 'shop:product_detail' product.pk %}">{{ product.name }}</a> >
+        <span>Удаление</span>
+      </nav>
+
+      <div class="form-container">
+        <h1 class="form-title">⚠️ Подтверждение удаления</h1>
+        
+        <div class="delete-warning">
+          <div class="product-preview">
+            {% if product.image %}
+              <img src="{{ product.image.url }}" alt="{{ product.name }}" class="preview-image">
+            {% else %}
+              <img src="https://via.placeholder.com/200x200?text={{ product.name }}" alt="{{ product.name }}" class="preview-image">
+            {% endif %}
+            <div class="preview-info">
+              <h2>{{ product.name }}</h2>
+              <p class="price">{{ product.price }} руб.</p>
+              <p class="category">Категория: {{ product.category.name }}</p>
+            </div>
+          </div>
+          
+          <div class="warning-message">
+            <p><strong>Вы действительно хотите удалить этот товар?</strong></p>
+            <p>Это действие нельзя отменить. Товар будет удален навсегда.</p>
+          </div>
+        </div>
+
+        <form method="post" class="delete-form">
+          {% csrf_token %}
+          <div class="form-buttons">
+            <button type="submit" class="btn btn--danger btn--large">
+              🗑️ Да, удалить товар
+            </button>
+            <a href="{% url 'shop:product_detail' product.pk %}" class="btn btn--secondary btn--large">
+              ← Отмена
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
+

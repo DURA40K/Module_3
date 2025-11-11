@@ -1,0 +1,167 @@
+// ===========================
+// Forms Component
+// ===========================
+
+.form {
+  &__group {
+    margin-bottom: map-get($spacers, 3);
+  }
+
+  &__label {
+    display: inline-block;
+    margin-bottom: map-get($spacers, 1);
+    font-weight: $font-weight-normal;
+    color: $text-primary;
+  }
+
+  &__control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: $font-weight-normal;
+    line-height: 1.5;
+    color: $text-primary;
+    background-color: $bg-primary;
+    background-clip: padding-box;
+    border: $border-width solid #ced4da;
+    border-radius: $border-radius;
+    @include transition(border-color, box-shadow);
+
+    &:focus {
+      color: $text-primary;
+      background-color: $bg-primary;
+      border-color: lighten($primary-color, 25%);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+    }
+
+    &::placeholder {
+      color: $text-muted;
+      opacity: 1;
+    }
+
+    &:disabled,
+    &[readonly] {
+      background-color: #e9ecef;
+      opacity: 1;
+    }
+  }
+
+  &__control--sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: $border-radius-sm;
+  }
+
+  &__control--lg {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    border-radius: $border-radius-lg;
+  }
+
+  &__select {
+    @extend .form__control;
+
+    &:focus::-ms-value {
+      color: $text-primary;
+      background-color: $bg-primary;
+    }
+  }
+
+  &__textarea {
+    @extend .form__control;
+    resize: vertical;
+  }
+
+  &__check {
+    position: relative;
+    display: block;
+    padding-left: 1.25rem;
+
+    &-input {
+      position: absolute;
+      margin-top: 0.3rem;
+      margin-left: -1.25rem;
+    }
+
+    &-label {
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+  }
+
+  &__radio {
+    @extend .form__check;
+  }
+
+  &__help {
+    display: block;
+    margin-top: map-get($spacers, 1);
+    font-size: 0.875rem;
+    color: $text-muted;
+  }
+
+  &__feedback {
+    display: block;
+    width: 100%;
+    margin-top: map-get($spacers, 1);
+    font-size: 0.875rem;
+
+    &--valid {
+      color: $success-color;
+    }
+
+    &--invalid {
+      color: $danger-color;
+    }
+  }
+
+  // Form validation states
+  &__control {
+    &.is-valid {
+      border-color: $success-color;
+
+      &:focus {
+        border-color: $success-color;
+        box-shadow: 0 0 0 0.2rem rgba($success-color, 0.25);
+      }
+    }
+
+    &.is-invalid {
+      border-color: $danger-color;
+
+      &:focus {
+        border-color: $danger-color;
+        box-shadow: 0 0 0 0.2rem rgba($danger-color, 0.25);
+      }
+    }
+  }
+
+  // Inline forms
+  &--inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    .form__group {
+      display: flex;
+      flex: 0 0 auto;
+      flex-flow: row wrap;
+      align-items: center;
+      margin-bottom: 0;
+      margin-right: map-get($spacers, 3);
+    }
+
+    .form__control {
+      display: inline-block;
+      width: auto;
+      vertical-align: middle;
+    }
+
+    .form__label {
+      margin-right: map-get($spacers, 2);
+      margin-bottom: 0;
+    }
+  }
+}

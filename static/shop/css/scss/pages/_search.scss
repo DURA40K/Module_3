@@ -1,0 +1,163 @@
+// Search results page styles
+
+.search-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.search-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    color: #333;
+    margin-bottom: 30px;
+  }
+}
+
+.search-form {
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: #4caf50;
+    }
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+
+  button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+}
+
+.btn-get {
+  background-color: #2196f3;
+  color: white;
+
+  &:hover {
+    background-color: #0b7dda;
+  }
+}
+
+.btn-post {
+  background-color: #4caf50;
+  color: white;
+
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+.method-info {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  border-radius: 4px;
+}
+
+.results {
+  margin-top: 30px;
+
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+}
+
+.product-list {
+  list-style: none;
+  padding: 0;
+}
+
+.product-item {
+  background: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border-left: 4px solid #4caf50;
+}
+
+.product-name {
+  font-weight: bold;
+  color: #333;
+  font-size: 18px;
+}
+
+.product-price {
+  color: #4caf50;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.product-description {
+  color: #666;
+  margin-top: 8px;
+}
+
+.no-results {
+  padding: 20px;
+  text-align: center;
+  color: #999;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.info-box {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+
+  h3 {
+    margin-top: 0;
+    color: #856404;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-page {
+    padding: 20px 10px;
+  }
+
+  .button-group {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}

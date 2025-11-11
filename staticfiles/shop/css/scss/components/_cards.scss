@@ -1,0 +1,130 @@
+// ===========================
+// Card Component
+// ===========================
+
+.card {
+  @include card-style;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+
+  &__img {
+    width: 100%;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+
+    &--top {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &__body {
+    flex: 1 1 auto;
+    padding: map-get($spacers, 3);
+  }
+
+  &__title {
+    margin-bottom: map-get($spacers, 2);
+    font-size: 1.25rem;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+  }
+
+  &__subtitle {
+    margin-top: -#{map-get($spacers, 1)};
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    color: $text-muted;
+  }
+
+  &__text {
+    margin-bottom: map-get($spacers, 3);
+    color: $text-primary;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__link {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+      color: darken($primary-color, 15%);
+      text-decoration: underline;
+    }
+  }
+
+  &__header {
+    padding: map-get($spacers, 2) map-get($spacers, 3);
+    margin-bottom: 0;
+    background-color: $bg-secondary;
+    border-bottom: $border-width solid $border-color;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+
+    &:first-child {
+      border-radius: $border-radius $border-radius 0 0;
+    }
+  }
+
+  &__footer {
+    padding: map-get($spacers, 2) map-get($spacers, 3);
+    background-color: $bg-secondary;
+    border-top: $border-width solid $border-color;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+
+    &:last-child {
+      border-radius: 0 0 $border-radius $border-radius;
+    }
+  }
+
+  // Card groups
+  &-group {
+    display: flex;
+    flex-direction: column;
+
+    .card {
+      margin-bottom: map-get($spacers, 3);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    @include media-breakpoint-up(sm) {
+      flex-direction: row;
+
+      .card {
+        flex: 1 0 0%;
+        margin-bottom: 0;
+
+        &:not(:last-child) {
+          border-right: 0;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        &:not(:first-child) {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
+  }
+
+  // Card hover effect
+  &--hover {
+    @include transition(transform, box-shadow);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $box-shadow-lg;
+    }
+  }
+}

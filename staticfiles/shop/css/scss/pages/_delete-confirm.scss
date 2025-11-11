@@ -1,0 +1,126 @@
+// Product delete confirmation page styles
+
+.delete-confirmation {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.confirmation-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  padding: 40px;
+  text-align: center;
+
+  &__icon {
+    font-size: 4rem;
+    color: #f44336;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .warning-message {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+    text-align: left;
+
+    p {
+      margin: 5px 0;
+      color: #856404;
+    }
+  }
+}
+
+.product-preview {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin: 30px 0;
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &__details {
+    flex: 1;
+    text-align: left;
+
+    h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      color: #4caf50;
+      font-weight: bold;
+    }
+  }
+}
+
+.confirmation-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 30px;
+
+  .btn {
+    min-width: 150px;
+  }
+
+  .btn--danger {
+    background-color: #f44336;
+    color: white;
+
+    &:hover {
+      background-color: #d32f2f;
+    }
+  }
+
+  .btn--secondary {
+    background-color: #757575;
+    color: white;
+
+    &:hover {
+      background-color: #616161;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .confirmation-card {
+    padding: 20px;
+  }
+
+  .product-preview {
+    flex-direction: column;
+    text-align: center;
+
+    &__details {
+      text-align: center;
+    }
+  }
+
+  .confirmation-actions {
+    flex-direction: column;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}

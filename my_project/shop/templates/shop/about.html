@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}О нас - Магазин{% endblock %}
+
+{% block content %}
+<main class="main">
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title">О нашей компании</h1>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="content">
+            <p>
+              Добро пожаловать в наш интернет-магазин! Мы работаем на рынке уже
+              более 10 лет и знаем, что нужно нашим клиентам.
+            </p>
+
+            <h2>Наша миссия</h2>
+            <p>
+              Предоставлять качественные товары по доступным ценам с отличным
+              сервисом обслуживания.
+            </p>
+
+            <h2>Наши преимущества</h2>
+            <ul>
+              <li>Широкий ассортимент товаров</li>
+              <li>Конкурентные цены</li>
+              <li>Быстрая доставка</li>
+              <li>Профессиональная поддержка</li>
+              <li>Гарантия качества</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card__body">
+              <h3 class="card__title">Связаться с нами</h3>
+              <p class="card__text">
+                Телефон: +380 (44) 123-45-67<br />
+                Email: info@shop.com<br />
+                Адрес: г. Киев, ул. Центральная, 1
+              </p>
+              <a href="{% url 'shop:contact' %}" class="btn btn--primary"
+                >Написать нам</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
