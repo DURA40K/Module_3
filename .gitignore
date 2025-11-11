@@ -205,3 +205,49 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Editor and Formatter Configuration Files
+# Prettier configuration - не загружаем в репозиторий
+.prettierrc
+.prettierrc.json
+.prettierrc.yml
+.prettierrc.yaml
+.prettierrc.js
+.prettierrc.cjs
+prettier.config.js
+prettier.config.cjs
+.prettierignore
+
+# ESLint configuration
+.eslintrc
+.eslintrc.json
+.eslintrc.yml
+.eslintrc.yaml
+.eslintrc.js
+.eslintrc.cjs
+eslint.config.js
+eslint.config.cjs
+
+# EditorConfig - можно оставить в репозитории
+# .editorconfig
+
+# Stylelint configuration
+.stylelintrc
+.stylelintrc.json
+.stylelintrc.yml
+.stylelintrc.yaml
+.stylelintrc.js
+.stylelintrc.cjs
+
+# CSS compilation artifacts
+*.css.map
+*.min.css.map
+
+# Project-specific ignores
+# Django static files compilation
+/static/shop/css/style.css
+/static/shop/css/style.min.css
+/static/shop/css/*.map
+
+# Keep only SCSS source files in the repository
+# !/static/shop/css/scss/

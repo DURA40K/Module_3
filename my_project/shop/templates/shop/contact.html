@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Контакты - Магазин{% endblock %}
+
+{% block content %}
+<main class="main">
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title">Свяжитесь с нами</h1>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="contact-info">
+            <h2>Контактная информация</h2>
+            <div class="contact-item">
+              <h3>Адрес</h3>
+              <p>г. Киев, ул. Центральная, 1<br />01001, Украина</p>
+            </div>
+            <div class="contact-item">
+              <h3>Телефон</h3>
+              <p>+380 (44) 123-45-67</p>
+            </div>
+            <div class="contact-item">
+              <h3>Email</h3>
+              <p>info@shop.com</p>
+            </div>
+            <div class="contact-item">
+              <h3>Время работы</h3>
+              <p>Пн-Пт: 9:00 - 18:00<br />Сб-Вс: 10:00 - 16:00</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="contact-form">
+            <h2>Написать нам</h2>
+            <form method="post" class="form">
+              {% csrf_token %}
+              <div class="form__group">
+                <label for="name" class="form__label">Имя:</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form__input"
+                  required
+                />
+              </div>
+              <div class="form__group">
+                <label for="email" class="form__label">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form__input"
+                  required
+                />
+              </div>
+              <div class="form__group">
+                <label for="subject" class="form__label">Тема:</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  class="form__input"
+                  required
+                />
+              </div>
+              <div class="form__group">
+                <label for="message" class="form__label">Сообщение:</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form__textarea"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn--primary">Отправить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

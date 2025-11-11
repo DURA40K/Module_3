@@ -1,0 +1,244 @@
+<nav class="header__nav">
+  <a href="{% url 'shop:index' %}" class="header__logo"> 🛍️ Мой Магазин </a>
+  <ul class="header__menu">
+    <li>
+      <a href="{% url 'shop:index' %}" class="header__link">Главная</a>
+    </li>
+    <li>
+      <a href="{% url 'shop:product_list' %}" class="header__link">Товары</a>
+    </li>
+    <li>
+      <a href="{% url 'shop:about' %}" class="header__link">О нас</a>
+    </li>
+    <li>
+      <a href="{% url 'shop:contact' %}" class="header__link">Контакты</a>
+    </li>
+    {% if user.is_authenticated %}
+    <li>
+      <a href="{% url 'shop:cart_view' %}" class="header__link" title="Корзина">
+        🛒 Корзина
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'shop:my_orders' %}" class="header__link" title="Мои заказы">
+        📦 Мои заказы
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'shop:logout_view' %}" class="header__link header__link--logout" title="Выйти">
+        👋 Выход ({{ user.username }})
+      </a>
+    </li>
+    {% else %}
+    <li>
+      <a href="{% url 'shop:login_view' %}" class="header__link header__link--login" title="Войти">
+        🔑 Вход
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'shop:register_view' %}" class="header__link header__link--register" title="Регистрация">
+        ✍️ Регистрация
+      </a>
+    </li>
+    {% endif %}
+    <li class="search-wrapper">
+      <button class="search-icon" id="searchToggle" type="button" aria-label="Поиск">
+        🔍
+      </button>
+      <div class="search-form-container" id="searchFormContainer">
+        <form method="GET" action="{% url 'shop:search_products' %}" class="search-form">
+          <input 
+            type="text" 
+            name="search" 
+            placeholder="Поиск товаров..." 
+            class="search-input"
+            id="searchInput"
+            autocomplete="off"
+          >
+          <button type="submit" class="search-submit">Найти</button>
+          <button type="button" class="search-close" id="searchClose">✕</button>
+        </form>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<style>
+/* Auth buttons */
+.header__link--login {
+  background: #2196F3;
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.header__link--login:hover {
+  background: #0b7dda;
+}
+
+.header__link--register {
+  background: #4CAF50;
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.header__link--register:hover {
+  background: #45a049;
+}
+
+.header__link--logout {
+  background: #f44336;
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.header__link--logout:hover {
+  background: #da190b;
+}
+
+/* Поиск в навигации */
+.search-wrapper {
+  position: relative;
+}
+
+.search-icon {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  transition: transform 0.3s ease;
+}
+
+.search-icon:hover {
+  transform: scale(1.2);
+}
+
+.search-form-container {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  min-width: 300px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.search-form-container.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.search-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.search-submit {
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.search-submit:hover {
+  background: #45a049;
+}
+
+.search-close {
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.search-close:hover {
+  background: #da190b;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .search-form-container {
+    right: -20px;
+    min-width: 280px;
+  }
+}
+</style>
+
+<script>
+// JavaScript для работы поиска
+document.addEventListener('DOMContentLoaded', function() {
+  const searchToggle = document.getElementById('searchToggle');
+  const searchFormContainer = document.getElementById('searchFormContainer');
+  const searchClose = document.getElementById('searchClose');
+  const searchInput = document.getElementById('searchInput');
+
+  // Открыть форму поиска
+  searchToggle.addEventListener('click', function() {
+    searchFormContainer.classList.add('active');
+    searchInput.focus();
+  });
+
+  // Закрыть форму поиска
+  searchClose.addEventListener('click', function() {
+    searchFormContainer.classList.remove('active');
+    searchInput.value = '';
+  });
+
+  // Закрыть при клике вне формы
+  document.addEventListener('click', function(event) {
+    if (!searchToggle.contains(event.target) && 
+        !searchFormContainer.contains(event.target)) {
+      searchFormContainer.classList.remove('active');
+    }
+  });
+
+  // Закрыть по Escape
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      searchFormContainer.classList.remove('active');
+    }
+  });
+});
+</script>

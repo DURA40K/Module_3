@@ -1,0 +1,30 @@
+// Main SCSS File for Shop
+
+// 1. Variables and Mixins
+@import "variables";
+@import "mixins";
+
+// 2. Base styles
+@import "base";
+
+// 3. Utilities
+@import "utils/grid";
+@import "utils/utilities";
+
+// 4. Components
+@import "components/header";
+@import "components/footer";
+@import "components/buttons";
+@import "components/cards";
+@import "components/forms";
+@import "components/products";
+
+// 5. Pages
+@import "pages/index";
+@import "pages/products";
+@import "pages/auth";
+@import "pages/cart";
+@import "pages/checkout";
+@import "pages/orders";
+@import "pages/search";
+@import "pages/delete-confirm";

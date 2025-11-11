@@ -1,0 +1,73 @@
+// ===========================
+// Container Grid System
+// ===========================
+
+.container {
+  width: 100%;
+  padding-right: map-get($spacers, 3);
+  padding-left: map-get($spacers, 3);
+  margin-right: auto;
+  margin-left: auto;
+
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    @include media-breakpoint-up($breakpoint) {
+      max-width: $container-max-width;
+    }
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: map-get($spacers, 3);
+  padding-left: map-get($spacers, 3);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// Grid system
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -#{map-get($spacers, 2)};
+  margin-left: -#{map-get($spacers, 2)};
+}
+
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  padding-right: map-get($spacers, 2);
+  padding-left: map-get($spacers, 2);
+}
+
+// Column classes
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex: 0 0 percentage($i / 12);
+    max-width: percentage($i / 12);
+    padding-right: map-get($spacers, 2);
+    padding-left: map-get($spacers, 2);
+  }
+}
+
+// Responsive columns
+@each $breakpoint in map-keys($grid-breakpoints) {
+  $infix: if($breakpoint == xs, "", "-#{$breakpoint}");
+
+  @include media-breakpoint-up($breakpoint) {
+    .col#{$infix} {
+      flex-basis: 0;
+      flex-grow: 1;
+      padding-right: map-get($spacers, 2);
+      padding-left: map-get($spacers, 2);
+    }
+
+    @for $i from 1 through 12 {
+      .col#{$infix}-#{$i} {
+        flex: 0 0 percentage($i / 12);
+        max-width: percentage($i / 12);
+        padding-right: map-get($spacers, 2);
+        padding-left: map-get($spacers, 2);
+      }
+    }
+  }
+}

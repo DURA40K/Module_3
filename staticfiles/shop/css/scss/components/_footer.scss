@@ -1,0 +1,104 @@
+// ===========================
+// Footer Component
+// ===========================
+
+.footer {
+  background-color: $dark-color;
+  color: $text-white;
+  margin-top: auto;
+
+  &__container {
+    max-width: map-get($container-max-widths, xl);
+    margin: 0 auto;
+    padding: 0 map-get($spacers, 3);
+  }
+
+  &__content {
+    padding: map-get($spacers, 5) 0 map-get($spacers, 3) 0;
+
+    @include media-breakpoint-up(md) {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: map-get($spacers, 4);
+    }
+  }
+
+  &__section {
+    margin-bottom: map-get($spacers, 4);
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    color: $text-white;
+    font-size: 1.125rem;
+    font-weight: $font-weight-bold;
+    margin-bottom: map-get($spacers, 3);
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__link {
+    color: rgba($text-white, 0.8);
+    text-decoration: none;
+    line-height: 1.8;
+    @include transition(color);
+
+    &:hover {
+      color: $text-white;
+      text-decoration: none;
+    }
+  }
+
+  &__text {
+    color: rgba($text-white, 0.8);
+    line-height: 1.6;
+    margin-bottom: map-get($spacers, 2);
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba($text-white, 0.1);
+    padding: map-get($spacers, 3) 0;
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+  }
+
+  &__copyright {
+    color: rgba($text-white, 0.6);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  &__social {
+    display: flex;
+    justify-content: center;
+    gap: map-get($spacers, 3);
+    margin-top: map-get($spacers, 2);
+
+    @include media-breakpoint-up(md) {
+      margin-top: 0;
+    }
+  }
+
+  &__social-link {
+    color: rgba($text-white, 0.6);
+    font-size: 1.25rem;
+    @include transition(color);
+
+    &:hover {
+      color: $text-white;
+    }
+  }
+}
